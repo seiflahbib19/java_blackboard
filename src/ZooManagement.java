@@ -118,12 +118,6 @@ public class ZooManagement {
 
         System.out.println("Position of giraffe2: " + myzoo.searchAnimal(giraffe2));
 
-
-        // ==========================================
-        // Instruction 12
-        // Tester l'unicité
-        // ==========================================
-
         System.out.println("\n========== DUPLICATE TEST ==========");
 
         myzoo.addAnimal(giraffe);
