@@ -1,6 +1,6 @@
 package entities;
 
-public class Aquatic extends Animal {
+public abstract class Aquatic extends Animal {
     protected String habitat;
 
     public Aquatic(String family, String name, int age,boolean ismammal, String habitat){
@@ -11,7 +11,27 @@ public class Aquatic extends Animal {
     public String toString() {
         return super.toString() + ", habitat='" + habitat;
     }
-    public void swim() {
-        System.out.println("This aquatic animal is swimming.");
+    public abstract void swim();
+
+    public String getHabitat() {
+        return habitat;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Aquatic)) {
+            return false;
+        }
+
+        Aquatic a = (Aquatic) obj;
+
+        return getName().equals(a.getName())
+                && getAge() == a.getAge()
+                && getHabitat().equals(a.getHabitat());
     }
 }
+

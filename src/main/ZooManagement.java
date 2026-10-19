@@ -134,10 +134,6 @@ public class ZooManagement {
         );
 
 
-        Aquatic aquatic = new Aquatic(
-                "Fish", "Nemo", 2, false, "Ocean"
-        );
-
         Terrestrial terrestrial = new Terrestrial(
                 "Mammal", "Lion", 5, true, 4
         );
@@ -152,10 +148,28 @@ public class ZooManagement {
 
         System.out.println("\n========== SWIM TEST ==========");
 
-        aquatic.swim();
         dolphin.swim();
         penguin.swim();
 
+        System.out.println("========== TAB AQUATIC TEST ===========");
+
+        myzoo.addAquaticAnimal(dolphin);
+        myzoo.addAquaticAnimal(penguin);
+
+        myzoo.displayAquaticAnimals();
+
+        System.out.println("========== MAX PENGUIN DEPTH ==========");
+        System.out.println("Maximum depth: " + myzoo.maxPenguinSwimmingDepth());
+
+        System.out.println("========== AQUATIC ANIMALS COUNT ==========");
+        myzoo.displayNumberOfAquaticsByType();
+
+
+        System.out.println("========== EQUALS ==========");
+        Dolphin d1 = new Dolphin("Mammal", "Flipper", 8, true, "Sea", 25.5f);
+        Dolphin d2 = new Dolphin("Mammal", "Flipper", 8, true, "Sea", 30.0f);
+
+        System.out.println(d1.equals(d2));
         scanner.close();
     }
 }

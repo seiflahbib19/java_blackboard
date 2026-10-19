@@ -1,15 +1,20 @@
 package entities;
 
+
 public class Zoo {
 
     static final int MAX_ANIMALS = 25;
     Animal[] animals = new Animal[MAX_ANIMALS];
+    static final int MAX_AQUATIC_ANIMALS = 10;
+    private Aquatic[] aquaticAnimals = new Aquatic[MAX_AQUATIC_ANIMALS];
 
     private String name;
     private String city;
     private int nbrCages;
 
-    public Zoo() {}
+    public Zoo() {
+    }
+
     public Zoo(String name, String city, int nbrCages) {
 
         this.name = name;
@@ -127,6 +132,7 @@ public class Zoo {
             return zoo2;
         }
     }
+
     public String getName() {
         return name;
     }
@@ -139,6 +145,7 @@ public class Zoo {
             System.out.println("Error: zoo name cannot be empty.");
         }
     }
+
     public void setNbrCages(int nbrCages) {
         if (nbrCages > MAX_ANIMALS) {
             this.nbrCages = MAX_ANIMALS;
@@ -146,7 +153,60 @@ public class Zoo {
             this.nbrCages = nbrCages;
         }
     }
+
     public void setCity(String city) {
         this.city = city;
     }
+
+    public void addAquaticAnimal(Aquatic aquatic) {
+        for (int i = 0; i < aquaticAnimals.length; i++) {
+            if (aquaticAnimals[i] == null) {
+                aquaticAnimals[i] = aquatic;
+                System.out.println("Added: " + aquatic.getName());
+                return;
+            }
+        }
+
+        System.out.println("Aquatic animals array is full.");
+    }
+
+    public void displayAquaticAnimals() {
+        for (Aquatic a : aquaticAnimals) {
+            if (a != null) {
+                a.swim();
+            }
+        }
+    }
+
+    public float maxPenguinSwimmingDepth() {
+        float maxDepth = 0;
+
+        for (Aquatic a : aquaticAnimals) {
+            if (a instanceof Penguin) {
+                Penguin p = (Penguin) a;
+
+                if (p.getSwimmingDepth() > maxDepth) {
+                    maxDepth = p.getSwimmingDepth();
+                }
+            }
+        }
+
+        return maxDepth;
+    }
+
+    public void displayNumberOfAquaticsByType(){
+        int dolphinCount = 0;
+        int penguinCount = 0;
+        for(Aquatic a : aquaticAnimals){
+            if(a instanceof Penguin){
+                penguinCount++;
+            } else if (a instanceof Dolphin) {
+                dolphinCount++;
+            }
+        }
+        System.out.println("Number of Dolphins: " + dolphinCount );
+        System.out.println("Number of Penguins: " + penguinCount );
+
+    }
+
 }
